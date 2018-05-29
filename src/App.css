@@ -43,6 +43,7 @@
 
 .Cell {
   text-align: center;
+  height: 100%;
 }
 
 .Cell-id {
@@ -57,4 +58,8 @@
 
 .hidden {
   visibility: hidden;
+}
+
+.highlight {
+  background-color: aqua;
 }
