@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import './App.css'
 import Cell from './Cell'
 import Knight from './Knight'
+import 'whatwg-fetch'
+import './App.css'
 
 const letters = 'ABCDEFGH'
+const api = 'http://localhost:3001/api/move'
 
 const columns = []
 for (let i = 0; i < 8; i++) {
@@ -24,14 +26,18 @@ class Board extends Component {
     }
   }
   setInitialPosition (selectedCell) {
-    this.setState({ initialPosition: selectedCell })
+    this.setState({ initialPosition: selectedCell, nextPositions: [] })
   }
 
   getNextPositions () {
-    const { initialPosition, nextPositions } = this.state
-    //implement fetch
-    //const nextPositions = fetch()
-    this.setState({ nextPositions: ['A1', 'B5', 'A8', 'C4', 'D8', 'G2'] })
+    const { initialPosition } = this.state
+
+    fetch(`${api}?position=${initialPosition}`, {
+    }).then(nextPositions => nextPositions.json())
+      .then(next => this.setState({ nextPositions: next }))
+    .catch((err) => {
+      console.error(err)
+    })
   }
 
   shouldHighlight(cell) {
