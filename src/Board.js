@@ -47,25 +47,33 @@ class Board extends Component {
 
   render () {
     const { initialPosition } = this.state
-    
+
     return (
-      <div className="App">
-          {columns.map(column =>
-            <div className="Board-column" key={column}>
-              {column.map(cell => {
-                return (
-                  <div className="Board-cell" key={cell} onClick={() => this.setInitialPosition(cell)}>
-                    <Cell id={cell} selected={initialPosition === cell} highlight={this.shouldHighlight(cell) ? 'highlight' : ''}>
-                      <Knight />
-                    </Cell>
-                  </div>
-                )
-              })}
-            </div>
+      <div className="app">
+        <header>Valid Chess Moves: Knight</header>
+        <div className="board">
+          {columns.map((column, colIndex) => {
+            const even = colIndex % 2 === 0 ? 'dark' : 'light'
+            const odd = colIndex % 2 === 0 ? 'light' : 'dark'
+            return (
+              <div className="board-column" key={column}>
+                {column.map((cell, cellIndex) => {
+                  const color = cellIndex % 2 === 0 ? even : odd 
+                  return (
+                    <div className={`board-cell ${color}`} key={cell} onClick={() => this.setInitialPosition(cell)}>
+                      <Cell id={cell} selected={initialPosition === cell} highlight={this.shouldHighlight(cell) ? 'highlight' : ''}>
+                        <Knight />
+                      </Cell>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
           )}
-          <div className="Button">
-            <button disabled={!this.state.initialPosition} onClick={() => this.getNextPositions()}>Próximas</button>
-          </div>
+        </div>
+
+        <button className="button" disabled={!this.state.initialPosition} onClick={() => this.getNextPositions()}>Next Positions</button>
+      
       </div>
     );
   }

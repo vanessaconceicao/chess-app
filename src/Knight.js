@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Knight = (show) => {
+const Knight = () => {
   return <i className="fas fa-chess-knight "></i>
 }
  

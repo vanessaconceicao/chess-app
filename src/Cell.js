@@ -5,10 +5,12 @@ class Cell extends Component {
     const { id, children, selected, highlight } = this.props
     const display = selected ? 'visible': 'hidden'
 
-    return <div className={`Cell ${highlight}`}>
-            <div className="Cell-id">{ id }</div>
-            <div className={display}>{ children }</div>
-          </div>
+    return (
+      <div className={`cell ${highlight}`}>
+        <div className="cell-id">{id}</div>
+        <div className={`piece ${display}`}>{children}</div>
+      </div>
+    )
   }
 }
  

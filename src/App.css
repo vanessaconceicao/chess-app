@@ -1,59 +1,48 @@
-.App {
+.app {
   text-align: center;
-  display: flex;
-  height: 80vh;
-  width: 80vw;
 }
 
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
+header {
   background-color: #222;
-  height: 150px;
-  padding: 20px;
   color: white;
+  font-size: 4vw;
+  margin: 1em auto;
+  padding: 3vw;
 }
 
-.App-title {
-  font-size: 1.5em;
+.board {
+  display: flex;
+  width: 100vw;
+  height: 100vw;
+  max-width: 90vh;
+  max-height: 90vh;
+  margin: 0 auto;
 }
 
-.App-intro {
-  font-size: large;
-} */
-
-/* @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
-
-.Board-column {
-  width: 100%;
+.board-column {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.Board-cell {
-  height: 12.5%;    
-  background-color: gray;
-  color: burlywood;
-  border: 1px solid;
+.board-cell {
+  flex-grow: 1;
+  color: #000000;
+  display: flex;
 }
 
-.Cell {
+.cell {
   text-align: center;
-  height: 100%;
+  flex: 1;
 }
 
-.Cell-id {
+.cell-id {
   text-align: left;
   font-size: 0.7rem;
 }
 
-.fa-chess-knight {
-  color: white;
-  font-size: 1.5rem;
+.button {
+  margin-top: 1em;
 }
 
 .hidden {
@@ -61,5 +50,29 @@
 }
 
 .highlight {
-  background-color: aqua;
+  color: #00ffff;
+  background-color: rgba(45, 161, 255, 0.4);
+}
+
+.piece {
+  color: #2d2d73;
+  font-size: 5vw;
+}
+
+.dark {
+  background-color: #808080;
+}
+
+.light {
+  background-color: #d8d8d8;
+}
+
+.button {
+  background-color: #2d2d73; 
+  border: none;
+  color: white;
+  padding: 0.7em 1.2em;
+  font-size: 1em;
+  margin: 1em;
+  cursor: pointer;
 }
