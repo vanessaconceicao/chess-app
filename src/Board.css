@@ -1,13 +1,13 @@
-.app {
+.container {
   text-align: center;
 }
 
 header {
   background-color: #222;
   color: white;
-  font-size: 4vw;
   margin: 1em auto;
-  padding: 3vw;
+  padding: 1em;
+  font-size: 2em;
 }
 
 .board {
@@ -20,20 +20,18 @@ header {
 }
 
 .board-column {
-  flex-grow: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  
+  flex-grow: 1;
 }
 
 .board-cell {
   flex-grow: 1;
-  color: #000000;
   display: flex;
 }
 
 .cell {
-  text-align: center;
-  flex: 1;
+  flex-grow: 1;
 }
 
 .cell-id {

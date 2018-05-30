@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Cell from './Cell'
 import Knight from './Knight'
 import 'whatwg-fetch'
-import './App.css'
+import './Board.css'
 
 const letters = 'ABCDEFGH'
 const api = 'http://localhost:3001/api/move'
@@ -24,6 +24,7 @@ class Board extends Component {
       nextPositions: []
     }
   }
+
   setInitialPosition(selectedCell) {
     this.setState({ initialPosition: selectedCell, nextPositions: [] })
   }
@@ -56,7 +57,7 @@ class Board extends Component {
     const { initialPosition } = this.state
 
     return (
-      <div className="app">
+      <div className="container">
         <header>Valid Chess Moves: Knight</header>
         <div className="board">
           {columns.map((column, colIndex) => {
