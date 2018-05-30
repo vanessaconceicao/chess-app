@@ -11,33 +11,32 @@ const columns = []
 for (let i = 0; i < 8; i++) {
   const cell = []
   for (let j = 0; j < 8; j++) {
-    cell.push(`${letters[i]}${8-j}`)
+    cell.push(`${letters[i]}${8 - j}`)
   }
   columns.push(cell)
 }
 
 class Board extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
-        initialPosition: '',
-        nextPositions: []
+      initialPosition: '',
+      nextPositions: []
     }
   }
-  setInitialPosition (selectedCell) {
+  setInitialPosition(selectedCell) {
     this.setState({ initialPosition: selectedCell, nextPositions: [] })
   }
 
-  getNextPositions () {
+  getNextPositions() {
     const { initialPosition } = this.state
 
-    fetch(`${api}?position=${initialPosition}`, {
-    }).then(nextPositions => nextPositions.json())
+    fetch(`${api}?position=${initialPosition}`, {})
+      .then(nextPositions => nextPositions.json())
       .then(next => this.setState({ nextPositions: next }))
-    .catch((err) => {
-      console.error(err)
-    })
+      .catch(err => {
+        console.error(err)
+      })
   }
 
   shouldHighlight(cell) {
@@ -45,7 +44,15 @@ class Board extends Component {
     return nextPositions.indexOf(cell) > -1
   }
 
-  render () {
+  oddColumnColor(colIndex) {
+    return colIndex % 2 === 0 ? 'light' : 'dark'
+  }
+
+  evenColumnColor(colIndex) {
+    return colIndex % 2 === 0 ? 'dark' : 'light'
+  }
+
+  render() {
     const { initialPosition } = this.state
 
     return (
@@ -53,29 +60,40 @@ class Board extends Component {
         <header>Valid Chess Moves: Knight</header>
         <div className="board">
           {columns.map((column, colIndex) => {
-            const even = colIndex % 2 === 0 ? 'dark' : 'light'
-            const odd = colIndex % 2 === 0 ? 'light' : 'dark'
+            const evenColor = this.evenColumnColor(colIndex)
+            const oddColor = this.oddColumnColor(colIndex)
             return (
               <div className="board-column" key={column}>
                 {column.map((cell, cellIndex) => {
-                  const color = cellIndex % 2 === 0 ? even : odd 
+                  const color = cellIndex % 2 === 0 ? evenColor : oddColor
                   return (
-                    <div className={`board-cell ${color}`} key={cell} onClick={() => this.setInitialPosition(cell)}>
-                      <Cell id={cell} selected={initialPosition === cell} highlight={this.shouldHighlight(cell) ? 'highlight' : ''}>
+                    <div
+                      className={`board-cell ${color}`} key={cell}
+                      onClick={() => this.setInitialPosition(cell)}>
+                      <Cell
+                        id={cell}
+                        selected={initialPosition === cell}
+                        highlight={
+                          this.shouldHighlight(cell) ? 'highlight' : ''
+                        }>
                         <Knight />
                       </Cell>
                     </div>
                   )
                 })}
               </div>
-            )}
-          )}
+            )
+          })}
         </div>
 
-        <button className="button" disabled={!this.state.initialPosition} onClick={() => this.getNextPositions()}>Next Positions</button>
-      
+        <button
+          className="button"
+          disabled={!initialPosition}
+          onClick={() => this.getNextPositions()}>
+          Next Positions
+        </button>
       </div>
-    );
+    )
   }
 }
 
