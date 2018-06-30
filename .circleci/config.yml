@@ -33,9 +33,13 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
         
-  deployment:
-    staging:
-      branch: master
-      heroku:
-        appname: chess--app
+  deploy:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: Deploy Master to Heroku
+          command: |
+            git push https://heroku:ce793925-08ed-478c-8468-5f676fa08409@git.heroku.com/chess--app.git master
 
