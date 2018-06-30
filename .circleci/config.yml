@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.11.0
+      - image: circleci/node:8.11.0-browsers
       
     working_directory: ~/repo
 
@@ -26,6 +26,8 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
   deploy:
+    docker:
+      - image: buildpack-deps:trusty
     steps:
       - run:
           name: Deploy Master to Heroku
