@@ -33,9 +33,9 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
         
-    deployment:
-      staging:
-        branch: master
-        heroku:
-          appname: chess--app
+  deployment:
+    staging:
+      branch: master
+      heroku:
+        appname: chess--app
 
