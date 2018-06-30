@@ -9,11 +9,11 @@ const api = 'http://localhost:3001/api/move'
 
 const columns = []
 for (let i = 0; i < 8; i++) {
-  const cell = []
+  const cells = []
   for (let j = 0; j < 8; j++) {
-    cell.push(`${letters[i]}${8 - j}`)
+    cells.push(`${letters[i]}${8 - j}`)
   }
-  columns.push(cell)
+  columns.push(cells)
 }
 
 class Board extends Component {
